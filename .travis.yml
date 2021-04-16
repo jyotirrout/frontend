@@ -1,0 +1,10 @@
+sudo: required
+# Tell Travis we need a copy of docker running
+services:
+  - docker
+# Build our image using Dockerfile.dev
+before_install:
+  - docker build -t jrout2021/frontend -f Dockerfile.dev
+# Tell Travis how to run our test suite
+script:
+  - docker run -e CI=true jrout2021/frontend npm run test
