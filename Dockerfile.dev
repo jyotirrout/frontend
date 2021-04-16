@@ -1,0 +1,13 @@
+# Specify a base image
+FROM node:14-alpine
+
+# /usr/app     -> Any following command will be executed relative to this path in the container
+WORKDIR '/app'
+# Install some depenendencies
+COPY package.json .
+RUN npm install
+
+COPY . .
+# Default command
+CMD ["npm", "run", "start"]
+
